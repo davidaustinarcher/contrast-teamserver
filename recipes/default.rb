@@ -13,9 +13,17 @@ when 'redhat', 'centos'
   package 'libaio'
 end
 
+# Create temp directory for Contrast TeamServer installer
+directory '/opt/contrast-installer' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  action :create
+end
+
 # Transfer Contrast TeamServer installer to local directory
-cookbook_file '/home/vagrant/Contrast-3.5.2.634.sh' do
-  source 'Contrast-3.5.2.634.sh'
+cookbook_file "/opt/contrast-installer/#{ node['contrast-teamserver']['installer'] }" do
+  source node['contrast-teamserver']['installer']
   mode '0755'
 end
 
@@ -31,7 +39,16 @@ end
 
 # Install Contrast TeamServer
 execute 'Run Contrast TeamServer install script' do
-  command 'sudo ./Contrast-3.5.2.634.sh -q -varfile /opt/vars.txt'
-  cwd '/home/vagrant'
+  command "sudo ./#{ node['contrast-teamserver']['installer'] } -q -varfile /opt/vars.txt"
+  cwd '/opt/contrast-installer'
   not_if { ::File.exist?('/opt/contrast/bin/contrast-server')}
 end
+
+# # Manually stop and start the `contrast-server` service to ensure it is properly initialized
+# execute `stop contrast-server service` do
+#   command `sudo service contrast-server stop`
+# end
+
+# execute `start contrast-server service` do
+#   command `sudo service contrast-server start`
+# end

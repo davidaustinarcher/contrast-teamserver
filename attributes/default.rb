@@ -1,0 +1,1 @@
+default['contrast-teamserver']['installer'] = 'contrast-installer.sh'
