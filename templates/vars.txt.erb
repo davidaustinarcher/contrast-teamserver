@@ -14,7 +14,7 @@
 # hub_username=1
 # installationType=fullInstall
 # isHeadless$Boolean=false
-licenseFileLocation=/opt/prod_dev.lic
+licenseFileLocation=/opt/<%= node['contrast-teamserver']['license'] %>
 licenseMethod$Integer=0
 mail_enabled$Boolean=false
 # mail_host=localhost
@@ -51,7 +51,7 @@ sys.installationDir=/opt/contrast
 # sys.languageId=en
 # sys.programGroupDisabled$Boolean=true
 # teamserver_language$Integer=0
-teamserver_url=http\://192.168.33.100\:8080/Contrast
+teamserver_url=<%= node['contrast-teamserver']['teamserver_url'] %>
 # teamserver_xforwarded$Boolean=false
 # userSelectedJvm=embeddedJvm
 # user_action=server_settings.create_default_user

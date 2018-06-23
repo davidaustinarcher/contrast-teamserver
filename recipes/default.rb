@@ -28,8 +28,8 @@ cookbook_file "/opt/contrast-installer/#{ node['contrast-teamserver']['installer
 end
 
 # Transfer demo license to local directory
-cookbook_file '/opt/prod_dev.lic' do
-  source 'prod_dev.lic'
+cookbook_file "/opt/#{ node['contrast-teamserver']['license'] }" do
+  source "#{ node['contrast-teamserver']['license'] }"
 end
 
 # Create variables file to pass to the unattended install for TeamServer
