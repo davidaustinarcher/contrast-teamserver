@@ -50,22 +50,20 @@ execute 'stop_contrast' do
   command 'sudo service contrast-server stop'
   cwd '/opt/contrast/bin'
   action :nothing
-  notifies :edit, 'replace_or_add[teamserver_url]', :immediately
-  # notifies :edit, 'replace_or_add[innodb_buffer_pool_size]', :immediately
+  notifies :create, 'template[/opt/contrast/data/conf/general.properties]', :immediately
   notifies :create, 'template[/opt/contrast/data/conf/mysql.properties]', :immediately
 end
 
 # Update TeamServer URL
-replace_or_add 'teamserver_url' do
-  path '/opt/contrast/data/conf/general.properties'
-  pattern "teamserver.url.*"
-  line "teamserver.url=#{ node['contrast-teamserver']['teamserver_url'] }"
-  replace_only true
+template '/opt/contrast/data/conf/general.properties' do
+  source 'general.properties.erb'
   action :nothing
 end
 
+# Update TeamServer MySQL buffer pool size configuration
 template '/opt/contrast/data/conf/mysql.properties' do
   source 'mysql.properties.erb'
+  action :nothing
   notifies :run, 'execute[start_contrast]', :delayed
 end
 
