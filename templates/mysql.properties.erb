@@ -1,0 +1,30 @@
+# Set to (CPUs or Cores * 2) for max performance
+thread_concurrency=2
+
+# Memory is only allocated when needed and immediately released
+max_allowed_packet=1024M
+default_storage_engine=InnoDB
+performance_schema=ON
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+innodb_log_file_size=4096M
+innodb_buffer_pool_size=4096M
+innodb_file_per_table=ON
+long_query_time=2
+
+# The destination for general query log and slow query log output
+log_output=FILE
+log_queries_not_using_indexes=OFF
+general_log=OFF
+general_log_file=${Contrast.Data.Log}//mysql.log
+
+# Log errors and startup messages to this file
+log_error=${Contrast.Data.Log}//mysql_error.log
+
+# Whether the slow query log is enabled. "Slow" is determined by the value of the long_query_time variable
+slow_query_log=OFF
+#The name of the slow query log file
+slow_query_log_file=${Contrast.Data.Log}//mysql-slow.log
+
+# encoding
+character_set_server = utf8
+collation_server = utf8_general_ci

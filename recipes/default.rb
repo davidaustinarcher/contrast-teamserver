@@ -42,13 +42,36 @@ execute 'Run Contrast TeamServer install script' do
   command "sudo ./#{ node['contrast-teamserver']['installer'] } -q -varfile /opt/vars.txt"
   cwd '/opt/contrast-installer'
   not_if { ::File.exist?('/opt/contrast/bin/contrast-server')}
+  notifies :run, 'execute[stop_contrast]', :immediately
 end
 
-# # Manually stop and start the `contrast-server` service to ensure it is properly initialized
-# execute `stop contrast-server service` do
-#   command `sudo service contrast-server stop`
-# end
+# Manually stop the `contrast-server` service to ensure it is properly initialized
+execute 'stop_contrast' do
+  command 'sudo service contrast-server stop'
+  cwd '/opt/contrast/bin'
+  action :nothing
+  notifies :edit, 'replace_or_add[teamserver_url]', :immediately
+  # notifies :edit, 'replace_or_add[innodb_buffer_pool_size]', :immediately
+  notifies :create, 'template[/opt/contrast/data/conf/mysql.properties]', :immediately
+end
 
-# execute `start contrast-server service` do
-#   command `sudo service contrast-server start`
-# end
+# Update TeamServer URL
+replace_or_add 'teamserver_url' do
+  path '/opt/contrast/data/conf/general.properties'
+  pattern "teamserver.url.*"
+  line "teamserver.url=#{ node['contrast-teamserver']['teamserver_url'] }"
+  replace_only true
+  action :nothing
+end
+
+template '/opt/contrast/data/conf/mysql.properties' do
+  source 'mysql.properties.erb'
+  notifies :run, 'execute[start_contrast]', :delayed
+end
+
+# Manually start the 'contrast-server' service to ensure it is properly started
+execute 'start_contrast' do
+  command 'sudo service contrast-server start'
+  cwd '/opt/contrast/bin'
+  action :nothing
+end
