@@ -16,7 +16,9 @@ This cookbook does not include the Contrast TeamServer installer, which you can 
 4. Next edit the default attributes file (`.../attributes/default.rb`) and update the `default['contrast-teamserver']['installer']` attribute value to match the TeamServer install filename (i.e., `Contrast-{version number}.sh`).
 
 ### Add your Contrast license to the cookbook files
-A license file is purposely not included with this cookbook.  You will need to acquire your own license from your Contrast Account Team or Contrast Support.
+A license file is purposely not included with this cookbook.  You will need to acquire your own license from your Contrast Account Team or Contrast Support.  After acquiring your license:
+1. Copy/move the license file to the cookbook's `files/default` directory
+2. Edit the `default.rb` attributes file (`.../attributes/default.rb`) and modify the value for `default['contrast-teamserver']['license']` to match the filename of your license file.
 
 ## Running this cookbook
 Please note that this cookbook will take some time to run (about a half hour) and TeamServer will still not be ready until about 15 minutes after the cookbook execution is complete due to the delay associated with installing, configuring, and initializing TeamServer for the first time.
