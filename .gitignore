@@ -24,3 +24,4 @@ Policyfile.lock.json
 # Contrast TeamServer installer
 # .*Contrast.*.sh
 files/default/contrast-installer.sh
+files/default/prod_dev.lic

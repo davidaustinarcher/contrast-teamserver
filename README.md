@@ -4,7 +4,7 @@ This cookbook installs the Contrast TeamServer on Linux (Debian/Ubuntu or Redhat
 *This cookbook was last updated for Contrast TeamServer v3.5.2.*
 
 ## Prerequisites
-You will need to supply your own Contrast TeamServer installer file and license file.
+You will need to supply your own Contrast TeamServer installer file and license file.  More details about where to place your installer and license files are below.
 
 ### Add the Contrast TeamServer installer to the cookbook files
 This cookbook does not include the Contrast TeamServer installer, which you can download using an account at https://hub.contrastsecurity.com.  The installer is not included with this cookbook because of its file size and it's best to get the latest version from hub.contrastsecurity.com.
@@ -20,5 +20,11 @@ A license file is purposely not included with this cookbook.  You will need to a
 1. Copy/move the license file to the cookbook's `files/default` directory
 2. Edit the `default.rb` attributes file (`.../attributes/default.rb`) and modify the value for `default['contrast-teamserver']['license']` to match the filename of your license file.
 
+## Attributes
+- `node['contrast-teamserver']['installer']` - Filename of the Contrast TeamServer installer
+- `node['contrast-teamserver']['license']` - Filename of the Contrast license
+- `node['contrast-teamserver']['teamserver_url']` - URL to access TeamServer
+- `node['contrast-teamserver']['innodb_buffer_pool_size']` - TeamServer's MySQL `innodb_buffer_pool_size`
+
 ## Running this cookbook
-Please note that this cookbook will take some time to run (about a half hour) and TeamServer will still not be ready until about 15 minutes after the cookbook execution is complete due to the delay associated with installing, configuring, and initializing TeamServer for the first time.
+Please note that this cookbook will take some time to run (about a half hour on a MacBook Pro with 3.1 GHz Intel Core i7 and 16GB RAM) and TeamServer will still not be ready until about 15-30 minutes after the cookbook execution is complete due to the delay associated with installing, configuring, and initializing TeamServer for the first time.  Please allocate 45-60 minutes for TeamServer to be up, running, and accessible.
