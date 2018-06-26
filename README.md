@@ -11,7 +11,7 @@ This cookbook does not include the Contrast TeamServer installer, which you can 
 
 1. Log in to your Contrast Hub account at https://hub.contrastsecurity.com
 2. Go to the "Downloads" page and download your desired Linux installer
-3. Once you've downloaded the TeamServer installer, which is a shell script with a filename of `Contrast-{version number}.sh`, create a directory for the file: `mkdir -p files/default`
+3. Once you've downloaded the TeamServer installer, which is a shell script with a filename of `Contrast-{version number}.sh`, create a directory for the file, for example: `cd ~/.../cookbooks/contrast-teamserver` then `mkdir -p files/default`
 4. Then move the installer file to the cookbook's `files/default` directory.  For example:
 `mv ~/Downloads/Contrast-{version number}.sh ~/cookbook/location/contrast-teamserver/files/default/Contrast-{version number}.sh`
 5. Next edit the default attributes file (`.../attributes/default.rb`) and update the `default['contrast-teamserver']['installer']` attribute value to match the TeamServer install filename (i.e., `Contrast-{version number}.sh`).
