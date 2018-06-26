@@ -27,4 +27,6 @@ A license file is purposely not included with this cookbook.  You will need to a
 - `node['contrast-teamserver']['innodb_buffer_pool_size']` - TeamServer's MySQL `innodb_buffer_pool_size`
 
 ## Running this cookbook
+From the `.../cookbooks` directory, run `sudo chef-client -zr 'recipe[contrast-teamserver]'`.
+
 Please note that this cookbook will take some time to run (about a half hour on a MacBook Pro with 3.1 GHz Intel Core i7 and 16GB RAM) and TeamServer will still not be ready until about 15-30 minutes after the cookbook execution is complete due to the delay associated with installing, configuring, and initializing TeamServer for the first time.  Please allocate 45-60 minutes for TeamServer to be up, running, and accessible.
