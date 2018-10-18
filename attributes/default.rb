@@ -9,3 +9,6 @@ default['contrast-teamserver']['teamserver_url'] = 'http\://192.168.33.100\:8888
 
 # TeamServer's MySQL `innodb_buffer_pool_size`
 default['contrast-teamserver']['innodb_buffer_pool_size'] = '4096M'
+
+# TeamServer web port
+default['contrast-teamserver']['port'] = '8888'

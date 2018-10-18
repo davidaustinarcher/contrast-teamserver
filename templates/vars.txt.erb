@@ -26,9 +26,9 @@ mail_enabled$Boolean=false
 # override_url$Boolean=false
 # perm_size=300M
 # port_ajp$Long=8009
-# port_override$Boolean=false
+port_override$Boolean=true
 # port_shutdown$Long=8005
-port_web$Long=8888
+port_web$Long=<%= node['contrast-teamserver']['port'] %>
 # proxy_enabled$Boolean=false
 # proxy_host=
 # proxy_ntlm$Boolean=false

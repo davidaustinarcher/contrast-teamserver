@@ -13,14 +13,14 @@ verifier:
   name: inspec
 
 platforms:
-  # - name: ubuntu-16.04
-  #   driver:
-  #     customize:
-  #       memory: 8192
-  #       cpus: 2
-  #     network:
-  #       - ["forwarded_port", {guest: 8888, host: 8888}]
-  #       - ["private_network", {ip: "192.168.33.100"}]
+  - name: ubuntu-16.04
+    driver:
+      customize:
+        memory: 8192
+        cpus: 2
+      network:
+        - ["forwarded_port", {guest: 8888, host: 8888}]
+        - ["private_network", {ip: "192.168.33.100"}]
   # - name: centos-7
   #   driver:
   #     customize:
@@ -38,15 +38,15 @@ platforms:
   #     network:
   #       - ["forwarded_port", {guest: 8888, host: 8888}]
   #       - ["private_network", {ip: "192.168.33.102"}]
-  - name: rhel7
-    driver:
-      box: generic/rhel7
-      customize:
-        memory: 8192
-        cpus: 2
-      network:
-        - ["forwarded_port", {guest: 8888, host: 8888}]
-        - ["private_network", {ip: "192.168.33.103"}]
+  # - name: rhel7
+  #   driver:
+  #     box: generic/rhel7
+  #     customize:
+  #       memory: 8192
+  #       cpus: 2
+  #     network:
+  #       - ["forwarded_port", {guest: 8888, host: 8888}]
+  #       - ["private_network", {ip: "192.168.33.103"}]
 
 suites:
   - name: default
