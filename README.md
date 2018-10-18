@@ -23,7 +23,7 @@ A license file is purposely not included with this cookbook.  You will need to a
 ## Attributes
 - `node['contrast-teamserver']['installer']` - Filename of the Contrast TeamServer installer
 - `node['contrast-teamserver']['license']` - Filename of the Contrast license
-- `node['contrast-teamserver']['teamserver_url']` - URL to access TeamServer
+- `node['contrast-teamserver']['teamserver_url']` - URL to access TeamServer, but please note the TeamServer web port is defined under the `vars.txt.erb` template under the `port_web$Long` setting
 - `node['contrast-teamserver']['innodb_buffer_pool_size']` - TeamServer's MySQL `innodb_buffer_pool_size`
 
 ## Running this cookbook
