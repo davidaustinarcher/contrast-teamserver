@@ -1,7 +1,7 @@
 # Contrast-TeamServer Cookbook
 This cookbook installs the Contrast TeamServer on Linux (Debian/Ubuntu or Redhat/Centos platforms) for demonstration purposes.  It is intended to automate the local installation and setup of TeamServer on a Linux VM hosted on a MacBook Pro with 16GB RAM.
 
-*This cookbook was last updated for Contrast TeamServer v3.5.2.*
+*This cookbook was last tested with Contrast TeamServer v3.5.3.*
 
 ## Prerequisites
 You will need to supply your own Contrast TeamServer installer file and license file.  More details about where to place your installer and license files are below.
@@ -27,4 +27,8 @@ A license file is purposely not included with this cookbook.  You will need to a
 - `node['contrast-teamserver']['innodb_buffer_pool_size']` - TeamServer's MySQL `innodb_buffer_pool_size`
 
 ## Running this cookbook
+From the `.../cookbooks` directory, run `sudo chef-client -zr 'recipe[contrast-teamserver]'`.
+
 Please note that this cookbook will take some time to run (about a half hour on a MacBook Pro with 3.1 GHz Intel Core i7 and 16GB RAM) and TeamServer will still not be ready until about 15-30 minutes after the cookbook execution is complete due to the delay associated with installing, configuring, and initializing TeamServer for the first time.  Please allocate 45-60 minutes for TeamServer to be up, running, and accessible.
+
+TeamServer will be fully running and accessible via your specified `teamserver_url` when you see a log message like `...Contrast TeamServer Ready - Took 1047250ms` from the `/opt/contrast/logs/server.log`.
